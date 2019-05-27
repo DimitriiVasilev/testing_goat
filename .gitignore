@@ -1,0 +1,6 @@
+geckodriver.log
+.idea/
+db*
+venv/
+**/__pycache__/
+*.swp

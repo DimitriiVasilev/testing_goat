@@ -17,7 +17,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.implicitly_wait(3)
 
         # She notices the page title and header mention to-do lists
-        self.assertIn('To-do', self.browser.title)
+        self.assertIn('To-Do', self.browser.title)
         self.fail('Finish the test')
 
         # She is invited to enter a to-do item straight away

@@ -39,6 +39,7 @@ class NewVisitorTest(LiveServerTestCase):
         # and now the page lists "1: Buy peacock feathers" as an item in a
         # to-do list table
         input_box.send_keys(Keys.ENTER)
+        time.sleep(1)
         edith_list_url = self.browser.current_url
         self.assertRegex(edith_list_url, '/lists/.+')
         self.check_for_row_in_list_table('1: Buy peacock feathers')
@@ -72,6 +73,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # Francis gets his own unique URL
         francis_list_url = self.browser.current_url

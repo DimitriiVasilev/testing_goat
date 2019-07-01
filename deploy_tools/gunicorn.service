@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn server for SITENAME
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/monty/sites/SITENAME/source
+ExecStart=/home/monty/sites/staging/venv/bin/gunicorn --bind unix:/tmp/SITENAME.socket APPNAME.wsgi
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

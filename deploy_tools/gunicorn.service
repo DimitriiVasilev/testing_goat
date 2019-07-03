@@ -3,9 +3,10 @@ Description=Gunicorn server for SITENAME
 After=network.target
 
 [Service]
-Type=simple
+Restart=on-failure
+User=monty
 WorkingDirectory=/home/monty/sites/SITENAME/source
-ExecStart=/home/monty/sites/staging/venv/bin/gunicorn --bind unix:/tmp/SITENAME.socket APPNAME.wsgi
+ExecStart=/home/monty/sites/SITENAME/venv/bin/gunicorn --bind unix:/tmp/SITENAME.socket superlist.wsgi
 Restart=always
 
 [Install]

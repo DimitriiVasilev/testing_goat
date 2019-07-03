@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Restart=on-failure
 User=monty
-EnvironmentFile=/home/monty/sites/ec2-3-14-80-125.us-east-2.compute.amazonaws.com/.env
+EnvironmentFile=/home/monty/sites/SITENAME/.env
 WorkingDirectory=/home/monty/sites/SITENAME/source
 ExecStart=/home/monty/sites/SITENAME/venv/bin/gunicorn --bind unix:/tmp/SITENAME.socket superlist.wsgi
 Restart=always

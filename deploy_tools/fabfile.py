@@ -18,18 +18,20 @@ def deploy():
 
 
 def _get_latest_source():
-    if exists('.git'):
-        run('git fetch')
+    if exists('source/.git'):
+        with cd('source'):
+            run('git fetch')
     else:
-        run(f'git clone {REPO_URL} .')
+        run(f'git clone {REPO_URL} source')
     current_commit = local('git log -n 1 --format=%H', capture=True)
-    run(f'git reset --hard {current_commit}')
+    with cd('source'):
+        run(f'git reset --hard {current_commit}')
 
 
 def _update_virtualenv():
     if not exists('venv/bin/pip'):
         run('python3.7 -m venv venv')
-    run('./venv/bin/pip3 install -r requirements.txt')
+    run('./venv/bin/pip3 install -r source/requirements.txt')
 
 
 def _create_or_update_dotenv():
@@ -44,8 +46,8 @@ def _create_or_update_dotenv():
 
 
 def _update_static_files():
-    run('./venv/bin/python3 manage.py collectstatic --noinput')
+    run('./venv/bin/python3 source/manage.py collectstatic --noinput')
 
 
 def _update_database():
-    run('./venv/bin/python3 manage.py migrate --noinput')
+    run('./venv/bin/python3 source/manage.py migrate --noinput')

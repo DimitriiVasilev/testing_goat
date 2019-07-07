@@ -4,8 +4,8 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 import re
 
-from .views import home_page
-from .models import Item, List
+from ..views import home_page
+from ..models import Item, List
 
 
 def remove_csrf(html_code):

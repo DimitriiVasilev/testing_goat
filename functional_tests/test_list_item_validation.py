@@ -12,7 +12,7 @@ class ItemValidationTest(FunctionalTest):
         # The home page refreshes, and there is an error message saying
         # that list items cannot be blank
         self.wait_for(lambda: self.assertEqual(
-            self.browser.find_element_by_css_selector('.has_error').text,
+            self.browser.find_element_by_css_selector('.has-error').text,
             "You can't have an empty list item"
         ))
 
@@ -22,11 +22,11 @@ class ItemValidationTest(FunctionalTest):
         self.wait_for_row_in_list_table('1: Buy milk')
 
         # Perversely, she now decides to submit a second blank list item
-        self.browser.find_element_by_id('id_new_item').send_keys('Buy milk')
+        self.browser.find_element_by_id('id_new_item').send_keys(Keys.ENTER)
 
         # She receives a similar warning on the list page
         self.wait_for(lambda: self.assertEqual(
-            self.browser.find_element_by_css_selector('.has_error').text,
+            self.browser.find_element_by_css_selector('.has-error').text,
             "You can't have an empty list item"
         ))
 

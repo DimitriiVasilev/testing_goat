@@ -5,8 +5,9 @@ from django.template.loader import render_to_string
 from django.utils.html import escape
 import re
 
-from ..views import home_page
-from ..models import Item, List
+from lists.views import home_page
+from lists.models import Item, List
+from lists.forms import ItemForm
 
 
 def remove_csrf(html_code):
@@ -28,6 +29,10 @@ class HomePageTest(TestCase):
             remove_csrf(response.content.decode()),
             remove_csrf(expected_html)
         )
+
+    def test_home_page_uses_item_form(self):
+        response = self.client.get('/')
+        self.assertIsInstance(response.context['form'], ItemForm)
 
 
 class ListViewTest(TestCase):

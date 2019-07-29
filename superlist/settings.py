@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lists',
+    'accounts'
 ]
+
+AUTH_USER_MODEL = 'accounts.ListUser'
+AUTHENTICATION_BACKENDS = ['accounts.authentication.PasswordlessAuthenticationBackend']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,3 +125,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(os.path.abspath(BASE_DIR)), 'static')
+
+# Variables for Email
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'levayapotscta@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')  # ixjkdsodsnqecktz
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
